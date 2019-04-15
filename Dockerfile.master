@@ -4,7 +4,8 @@ MAINTAINER tim@cyface.com
 RUN yum install -y epel-release && \
     yum install -y --nogpgcheck https://repo.saltstack.com/yum/redhat/salt-repo-latest-2.el7.noarch.rpm && \
     yum update -y && \
-    yum install -y virt-what salt-master && \
+    yum install -y virt-what salt-master python-pip && \
+    pip install -U pytest testinfra && \
     yum clean all && \
     rm -rf /var/cache/yum
 

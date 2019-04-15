@@ -5,6 +5,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.master
+    volumes:
+      - ./salt:/srv/salt
+      - ./pillar:/srv/pillar
+      - ./test:/srv/test
   salt-minion:
     build:
       context: .
