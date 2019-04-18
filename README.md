@@ -28,3 +28,13 @@ and in the window where you started docker compose, you will see the log output 
 Note: you will see log messages like : "Could not determine init system from command line" - those are just because salt is running in the foreground and not from an auto-startup.
 
 The salt-master is set up to accept all minions that try to connect.  Since the network that the salt-master sees is only the docker-compose network, this means that only minions within this docker-compose service network will be able to connect (and not random other minions external to docker).
+
+cd /vagrant
+sudo su
+docker-compose build
+docker-compose up -d
+docker-compose exec salt-master bash
+cd /srv/salt
+salt '*' state.apply
+cd ../test
+py.test --hosts='salt://*'
